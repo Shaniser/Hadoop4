@@ -3,6 +3,7 @@ package ru.bmstu.hadoop.lab4;
 import akka.NotUsed;
 import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
+import akka.actor.Props;
 import akka.http.javadsl.ConnectHttp;
 import akka.http.javadsl.Http;
 import akka.http.javadsl.ServerBinding;
@@ -13,11 +14,11 @@ import akka.http.javadsl.server.Route;
 import akka.pattern.Patterns;
 import akka.stream.ActorMaterializer;
 import akka.stream.javadsl.Flow;
+import scala.concurrent.Future;
 
 import javax.script.ScriptException;
 import java.io.IOException;
 import java.util.concurrent.CompletionStage;
-import java.util.concurrent.Future;
 
 import static akka.http.javadsl.server.Directives.*;
 
@@ -30,6 +31,7 @@ public class Tester {
 
         ActorSystem system = ActorSystem.create("routes");
         final Http http = Http.get(system);
+        ActorRef router = system.actorOf(Props.create(RouteActor.class));
         final ActorMaterializer materializer = ActorMaterializer.create(system);
         Tester instance = new Tester();
         final Flow<HttpRequest, HttpResponse, NotUsed> routeFlow =
@@ -51,7 +53,8 @@ public class Tester {
                         () -> parameter(
                                 "packageId",
                                 (id) -> {
-                                    Future<Object> future = Patterns.ask(router, new )
+                                    Future<Object> future = Patterns.ask(router, new ResultMessage(id), 5);
+                                    return completeOKWithFuture(future, Jackson.marshaller());
                                 }
                         )
                 ),
