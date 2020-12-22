@@ -9,12 +9,14 @@ import akka.http.javadsl.marshallers.jackson.Jackson;
 import akka.http.javadsl.model.HttpRequest;
 import akka.http.javadsl.model.HttpResponse;
 import akka.http.javadsl.server.Route;
+import akka.pattern.Patterns;
 import akka.stream.ActorMaterializer;
 import akka.stream.javadsl.Flow;
 
 import javax.script.ScriptException;
 import java.io.IOException;
 import java.util.concurrent.CompletionStage;
+import java.util.concurrent.Future;
 
 import static akka.http.javadsl.server.Directives.*;
 
@@ -45,8 +47,12 @@ public class Tester {
     private Route createRoute() {
         return route(
                 get(
-                        () -> parameter("packageId",
-                                (id) -> complete(""+ id + "\n"))
+                        () -> parameter(
+                                "packageId",
+                                (id) -> {
+                                    Future<Object> future = Patterns.ask()
+                                }
+                        )
                 ),
                 post(
                         () -> entity(Jackson.unmarshaller(Request.class),
