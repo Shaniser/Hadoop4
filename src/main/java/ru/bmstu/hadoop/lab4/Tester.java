@@ -60,7 +60,10 @@ public class Tester {
                 ),
                 post(
                         () -> entity(Jackson.unmarshaller(Request.class),
-                                (request -> complete(request.getFunctionName())))
+                                (requestBody) -> {
+                                    router.tell(requestBody, ActorRef.noSender());
+                                    complete("Test Accepted \n");
+                                })
                 )
         );
     }
