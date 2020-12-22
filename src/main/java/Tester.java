@@ -5,6 +5,7 @@ import akka.http.javadsl.Http;
 import akka.http.javadsl.ServerBinding;
 import akka.http.javadsl.model.HttpRequest;
 import akka.http.javadsl.model.HttpResponse;
+import akka.http.javadsl.server.AllDirectives;
 import akka.http.javadsl.server.Route;
 import akka.stream.ActorMaterializer;
 import akka.stream.javadsl.Flow;
@@ -14,6 +15,8 @@ import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
 import java.util.concurrent.CompletionStage;
+
+import static akka.http.javadsl.server.Directives.*;
 
 public class Tester {
     public static void main(String[] args) throws ScriptException, NoSuchMethodException {
@@ -31,7 +34,7 @@ public class Tester {
         final CompletionStage<ServerBinding> binding = http.bindAndHandle(
                 routeFlow,
                 ConnectHttp.toHost("localhost", 8080),
-                materializer
+                materializer);
                 System.out.println("Server online at http://localhost:8080/\nPress RETURN to stop...");
         System.in.read();
         binding
@@ -40,6 +43,14 @@ public class Tester {
     }
 
     private Route createRoute() {
-        return concat()
+        return route(
+                get(
+                        () -> parameter("packageId",
+                                (id) -> complete(""+ id + "\n"))
+                ),
+                post(
+                        () -> complete("Recevied POST")
+                )
+        );
     }
 }
