@@ -1,6 +1,7 @@
 package ru.bmstu.hadoop.lab4;
 
 import akka.NotUsed;
+import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
 import akka.http.javadsl.ConnectHttp;
 import akka.http.javadsl.Http;
@@ -44,13 +45,13 @@ public class Tester {
                 .thenAccept(unbound -> system.terminate());
     }
 
-    private Route createRoute() {
+    private Route createRoute(ActorRef router) {
         return route(
                 get(
                         () -> parameter(
                                 "packageId",
                                 (id) -> {
-                                    Future<Object> future = Patterns.ask()
+                                    Future<Object> future = Patterns.ask(router, new )
                                 }
                         )
                 ),
