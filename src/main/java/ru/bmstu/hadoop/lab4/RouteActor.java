@@ -16,6 +16,6 @@ public class RouteActor extends AbstractActor {
     @Override
     public Receive createReceive() {
         return ReceiveBuilder.create().match(DataMessage.class,
-                message -> actorExecutor.tell((message, ActorRef.noSender())).build();
+                message -> actorExecutor.tell(message, ActorRef.noSender())).build();
     }
 }
