@@ -14,4 +14,8 @@ public class ResultMessage {
     public String getPackageId() {
         return packageId;
     }
+
+    public ArrayList<String> getResult() {
+        return result;
+    }
 }
