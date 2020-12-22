@@ -53,7 +53,7 @@ public class Tester {
                         () -> parameter(
                                 "packageId",
                                 (id) -> {
-                                    Future<Object> future = Patterns.ask(router, new ResultMessage(id), 5);
+                                    Future<Object> future = Patterns.ask(router, new ResultMessage(id,), 5);
                                     return completeOKWithFuture(future, Jackson.marshaller());
                                 }
                         )
