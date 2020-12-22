@@ -1,5 +1,9 @@
 package ru.bmstu.hadoop.lab4;
 
-public class RouteActor {
+import akka.actor.ActorRef;
 
+import static java.security.AccessController.getContext;
+
+public class RouteActor {
+    private final ActorRef actorExecutor = getContext().
 }
