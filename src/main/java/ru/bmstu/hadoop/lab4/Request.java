@@ -12,7 +12,10 @@ public class Request {
     @JsonProperty("tests")
     private final String tests;
 
-    public Request(String packageId, String jsScript, String functionName, String tests) {
+    public Request(@JsonProperty("packageId") String packageId,
+                   @JsonProperty("packageId") String jsScript,
+                   @JsonProperty("packageId")String functionName,
+                   @JsonProperty("packageId")String tests) {
         this.packageId = packageId;
         this.jsScript = jsScript;
         this.functionName = functionName;
