@@ -1,2 +1,4 @@
-package ru.bmstu.hadoop.lab4;public class ExecuteActor {
+package ru.bmstu.hadoop.lab4;
+
+public class ExecuteActor {
 }
