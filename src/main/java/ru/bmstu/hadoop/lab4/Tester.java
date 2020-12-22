@@ -35,7 +35,7 @@ public class Tester {
         final ActorMaterializer materializer = ActorMaterializer.create(system);
         Tester instance = new Tester();
         final Flow<HttpRequest, HttpResponse, NotUsed> routeFlow =
-                instance.createRoute().flow(system, materializer);
+                instance.createRoute(router).flow(system, materializer);
         final CompletionStage<ServerBinding> binding = http.bindAndHandle(
                 routeFlow,
                 ConnectHttp.toHost("localhost", 8080),
