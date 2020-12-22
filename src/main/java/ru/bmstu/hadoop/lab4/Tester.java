@@ -62,7 +62,7 @@ public class Tester {
                         () -> entity(Jackson.unmarshaller(Request.class),
                                 (requestBody) -> {
                                     router.tell(requestBody, ActorRef.noSender());
-                                    complete("Test Accepted \n");
+                                    return complete("Test Accepted \n");
                                 })
                 )
         );
