@@ -1,5 +1,6 @@
 import akka.actor.ActorSystem;
 import akka.http.javadsl.Http;
+import akka.stream.ActorMaterializer;
 
 import javax.script.Invocable;
 import javax.script.ScriptEngine;
