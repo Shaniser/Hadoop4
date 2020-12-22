@@ -7,7 +7,7 @@ public class Tester {
         ScriptEngine engine = new ScriptEngineManager().getEngineByName("nashorn");
         engine.eval("var f = function(a, b) {return a + b}");
         Invocable invocable = (Invocable) engine;
-        System.out.println(invocable.invokeFunction(functionName, params).toString());
+        System.out.println(invocable.invokeFunction("f", params).toString());
 
     }
 }
