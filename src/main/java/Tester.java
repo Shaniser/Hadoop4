@@ -5,9 +5,9 @@ import javax.script.ScriptEngineManager;
 public class Tester {
     public static void main(String[] args) {
         ScriptEngine engine = new ScriptEngineManager().getEngineByName("nashorn");
-        engine.eval(jscript);
+        engine.eval("var f = function(a, b) {return a + b}");
         Invocable invocable = (Invocable) engine;
-        return invocable.invokeFunction(functionName, params).toString();
+        System.out.println(invocable.invokeFunction(functionName, params).toString());
 
     }
 }
