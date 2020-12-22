@@ -29,9 +29,9 @@ public class Tester {
         ActorSystem system = ActorSystem.create("routes");
         final Http http = Http.get(system);
         final ActorMaterializer materializer = ActorMaterializer.create(system);
-        Tester instance = new Tester(system);
+        Tester instance = new Tester();
         final Flow<HttpRequest, HttpResponse, NotUsed> routeFlow =
-                instance.createRoute(system).flow(system, materializer);
+                instance.createRoute().flow(system, materializer);
         final CompletionStage<ServerBinding> binding = http.bindAndHandle(
                 routeFlow,
                 ConnectHttp.toHost("localhost", 8080),
