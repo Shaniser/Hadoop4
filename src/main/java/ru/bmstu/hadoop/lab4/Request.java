@@ -21,4 +21,20 @@ public class Request {
         this.functionName = functionName;
         this.tests = tests;
     }
+
+    public String getFunctionName() {
+        return functionName;
+    }
+
+    public String getJsScript() {
+        return jsScript;
+    }
+
+    public String getPackageId() {
+        return packageId;
+    }
+
+    public String getTests() {
+        return tests;
+    }
 }
