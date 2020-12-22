@@ -14,12 +14,13 @@ import javax.script.Invocable;
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
+import java.io.IOException;
 import java.util.concurrent.CompletionStage;
 
 import static akka.http.javadsl.server.Directives.*;
 
 public class Tester {
-    public static void main(String[] args) throws ScriptException, NoSuchMethodException {
+    public static void main(String[] args) throws ScriptException, NoSuchMethodException, IOException {
 //        ScriptEngine engine = new ScriptEngineManager().getEngineByName("nashorn");
 //        engine.eval("var f = function(a, b) {return a + b}");
 //        Invocable invocable = (Invocable) engine;
